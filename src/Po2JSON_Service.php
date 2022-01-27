@@ -13,11 +13,24 @@ use SiteGround_Helper\Helper_Service;
  */
 class Po2JSON_Service {
 
-    public $sg_textdomain;
+	/**
+	 * Variable holding the text domain.
+	 *
+	 * @var string
+	 */
+	public $sg_textdomain;
 
-    public function __construct( $textdomain ) {
-        $this->sg_textdomain = $textdomain;
-    }
+	/**
+	 * Class construct.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $textdomain The text domain that will be used for the instance.
+	 */
+	public function __construct( $textdomain ) {
+		$this->sg_textdomain = $textdomain;
+	}
+
 	/**
 	 * Load the plugin textdomain.
 	 *
@@ -34,7 +47,7 @@ class Po2JSON_Service {
 	/**
 	 * Update json translations on translations update.
 	 *
-	 * @since  5.5.5
+	 * @since  1.0.0
 	 *
 	 * @param  {WP_Upgrader} $upgrader WP_Upgrader instance.
 	 * @param  array         $extra    Array of bulk item update data.
@@ -96,7 +109,7 @@ class Po2JSON_Service {
 	/**
 	 * Get i18n strings as a JSON-encoded string
 	 *
-	 * @since 5.0.0
+	 * @since 1.0.0
 	 *
 	 * @return string The locale as JSON
 	 */
@@ -123,7 +136,6 @@ class Po2JSON_Service {
 				}
 			}
 		}
-
 
 		// Return valid empty Jed locale.
 		return json_encode(
