@@ -1,17 +1,17 @@
 <?php
 /**
- * SiteGround Po2JSON Service.
+ * SiteGround i18n Service.
  */
 
-namespace SiteGround_Po2JSON;
+namespace SiteGround_i18n;
 
 use CharlesRumley\PoToJson;
 use SiteGround_Helper\Helper_Service;
 
 /**
- * SiteGround_Po2JSON_Service class.
+ * SiteGround_i18n_Service class.
  */
-class Po2JSON_Service {
+class i18n_Service {
 
 	/**
 	 * Variable holding the text domain.

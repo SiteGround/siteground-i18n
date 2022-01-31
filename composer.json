@@ -1,8 +1,8 @@
 {
-    "name": "siteground/siteground-po2json",
+    "name": "siteground/siteground-i18n",
     "autoload": {
         "psr-4": {
-            "SiteGround_Po2JSON\\": "src/"
+            "SiteGround_i18n\\": "src/"
         }
     },
     "require": {}
