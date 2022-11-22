@@ -21,14 +21,23 @@ class i18n_Service {
 	public $sg_textdomain;
 
 	/**
+	 * Variable holding the plugin folder.
+	 *
+	 * @var string
+	 */
+	public $folder;
+
+	/**
 	 * Class construct.
 	 *
 	 * @since 1.0.0
 	 *
 	 * @param string $textdomain The text domain that will be used for the instance.
+	 * @param string $folder     The folder that will be used for the instance.
 	 */
-	public function __construct( $textdomain ) {
+	public function __construct( $textdomain, $folder = '' ) {
 		$this->sg_textdomain = $textdomain;
+		$this->folder        = empty( $folder ) ? $textdomain : $folder;
 	}
 
 	/**
@@ -40,7 +49,7 @@ class i18n_Service {
 		load_plugin_textdomain(
 			$this->sg_textdomain,
 			false,
-			$this->sg_textdomain . '/languages'
+			$this->folder . '/languages'
 		);
 	}
 
@@ -83,14 +92,14 @@ class i18n_Service {
 		foreach ( $keys as $key ) {
 			// Convert a PO file to Jed-compatible JSON.
 			$json = $po_to_json
-						->withPoFile( WP_CONTENT_DIR . '/languages/plugins/' . $this->sg_textdomain . '-' . $extra['translations'][ $key ]['language'] . '.po' )
+						->withPoFile( WP_CONTENT_DIR . '/languages/plugins/' . $this->folder . '-' . $extra['translations'][ $key ]['language'] . '.po' )
 						->toJedJson( false, $this->sg_textdomain );
 
 			// Convert and get the json content.
 			$content = json_decode( $json, true );
 
 			// Build the json filepath.
-			$json_filepath = WP_CONTENT_DIR . '/languages/plugins/' . $this->sg_textdomain . '-' . $extra['translations'][ $key ]['language'] . '.json';
+			$json_filepath = WP_CONTENT_DIR . '/languages/plugins/' . $this->folder . '-' . $extra['translations'][ $key ]['language'] . '.json';
 
 			// Create the file if donesn't exists.
 			if ( ! is_file( $json_filepath ) ) {
@@ -120,7 +129,7 @@ class i18n_Service {
 		// Possible langugaes paths.
 		$dirs = array(
 			'wp-content/languages/plugins/',
-			'wp-content/plugins/' . $this->sg_textdomain . '/languages/json/',
+			'wp-content/plugins/' . $this->folder . '/languages/json/',
 		);
 
 		foreach ( $dirs as $dir ) {
